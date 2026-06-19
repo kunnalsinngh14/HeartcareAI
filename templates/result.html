@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Heart Health Analysis</title>
+    <!-- Professional typography: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* UI-UX Pro Max Theme Variables - Professional Off-white & Slate */
+        :root {
+            --bg-color: #f6f7f9; /* Professional off-white/light gray */
+            --surface-color: #ffffff;
+            --border-color: #e2e8f0; 
+            --primary: #2563eb; /* Trustworthy professional blue */
+            --primary-hover: #1d4ed8; 
+            --primary-light: #eff6ff; 
+            --text-main: #0f172a; 
+            --text-muted: #475569; 
+            --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            --transition: 200ms ease-in-out;
+            --radius: 12px;
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 24px;
+            -webkit-font-smoothing: antialiased;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: var(--surface-color);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            padding: 48px;
+            border: 1px solid var(--border-color);
+        }
+
+        .header-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 32px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 32px;
+        }
+
+        .brand-icon {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .brand-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke-width: 2;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .prediction-badge {
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        /* Jinja conditional styling for the risk badge */
+        .risk-high {
+            background-color: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecdd3;
+        }
+
+        .risk-low {
+            background-color: #f0fdf4;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+        }
+
+        .ai-analysis {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        /* Styling for markdown elements injected by Gemini */
+        .ai-analysis h1, .ai-analysis h2, .ai-analysis h3, .ai-analysis h4 {
+            color: var(--text-main);
+            margin-top: 32px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        
+        .ai-analysis h3 {
+            font-size: 20px;
+        }
+
+        .ai-analysis p {
+            margin-bottom: 16px;
+        }
+
+        .ai-analysis ul, .ai-analysis ol {
+            padding-left: 24px;
+            margin-bottom: 24px;
+        }
+
+        .ai-analysis li {
+            margin-bottom: 8px;
+        }
+
+        .ai-analysis strong {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .btn-return {
+            display: block;
+            text-align: center;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 16px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all var(--transition);
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-return:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-section">
+            <div class="brand-icon">
+                <!-- Professional medical/analytics icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+            </div>
+            <h1>Clinical Assessment Report</h1>
+            
+            {% if "High" in result %}
+                <div class="prediction-badge risk-high">
+                    {{ result }}
+                </div>
+            {% else %}
+                <div class="prediction-badge risk-low">
+                    {{ result }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="ai-analysis">
+            <!-- Renders the Gemini markdown string as safe HTML -->
+            {{ reply | safe }}
+        </div>
+
+        <a href="/" class="btn-return">Assess Another Patient</a>
+    </div>
+
+</body>
+</html>
