@@ -75,9 +75,13 @@ python app.py
 The machine learning component (`src.ipynb`) uses:
 - `StandardScaler` for feature normalization.
 - `RandomForestClassifier` for robust, non-linear pattern recognition.
-- Note: Fasting Blood Sugar (`fbs`) was retained as it contributes to the model's peak 98% accuracy.
 
 ---
 
 ## 🤝 Contributing
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page if you want to contribute.
+Contributions, suggestions, and feature requests are welcome.
+
+Feel free to fork the repository, open issues, and submit pull requests to improve Easy Notes.
+
+---
+© 2026 Kunal Singh
