@@ -23,6 +23,39 @@ An intelligent, full-stack clinical web application that predicts a patient's ri
 
 ---
 
+## 💻 Tech Stack
+
+- **Frontend**: HTML5, CSS3, Jinja2 Templates
+- **Backend**: Python, Flask
+- **Machine Learning**: Scikit-Learn (Random Forest), Pandas, NumPy
+- **Generative AI**: Google Gemini API (`google-genai` SDK)
+
+---
+
+## 📁 Project Structure
+
+```text
+Heart-Disease-Predictor/
+├── app.py               # Main Flask application & API routes
+├── src.ipynb            # Jupyter notebook for EDA & ML Model training
+├── heart.csv            # Clinical dataset
+├── encoder.pkl          # Pickled StandardScaler for input normalization
+├── model.pkl            # Pickled Random Forest Machine Learning model
+├── .env                 # Environment variables (API keys)
+├── README.md            # Project documentation
+└── templates/
+    ├── index.html       # Input form for clinical parameters
+    └── result.html      # AI Analysis & Risk prediction output
+```
+
+---
+
+## 📊 Model Performance
+
+The predictive engine uses a `RandomForestClassifier` optimized via Hyperparameter Tuning. Evaluated on test splits of the dataset, the model achieved an outstanding **Accuracy of 98%**, with high precision and recall across both the High Risk and Low Risk classes. All inputs are normalized via `StandardScaler` to maintain structural integrity before prediction.
+
+---
+
 ## 🛠️ The 13 Clinical Parameters Assessed
 1. **Age**
 2. **Gender** 
@@ -53,7 +86,7 @@ cd Heart-Disease-Predictor
 ### 2. Install Dependencies
 Ensure you have Python installed, then install the required packages:
 ```bash
-pip install -r requirement.txt
+pip install flask scikit-learn pandas google-genai markdown python-dotenv
 ```
 
 ### 3. Setup your Environment Variables
@@ -71,17 +104,5 @@ python app.py
 
 ---
 
-## 🧠 Model Training Details
-The machine learning component (`src.ipynb`) uses:
-- `StandardScaler` for feature normalization.
-- `RandomForestClassifier` for robust, non-linear pattern recognition.
-
----
-
 ## 🤝 Contributing
-Contributions, suggestions, and feature requests are welcome.
-
-Feel free to fork the repository, open issues, and submit pull requests to improve Easy Notes.
-
----
-© 2026 Kunal Singh
+Contributions, issues, and feature requests are welcome! Feel free to check the issues page if you want to contribute.
