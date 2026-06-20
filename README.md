@@ -105,4 +105,9 @@ python app.py
 ---
 
 ## 🤝 Contributing
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page if you want to contribute.
+Contributions, suggestions, and feature requests are welcome.
+
+Feel free to fork the repository, create issues, and submit pull requests to improve HeartcareAI.
+
+---
+© 2026 Kunal Singh
